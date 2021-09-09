@@ -1,24 +1,34 @@
+import csv
 import locale
+import os
 import sqlite3
+import sys
 import tkinter as tk
 import webbrowser
 from datetime import datetime
 from tkinter import messagebox, filedialog
 from tkinter.font import BOLD, Font
 from tkinter.ttk import Label, Scale, Button
-import csv
-import xlsxwriter
+
 import cv2
 import face_recognition
 import numpy as np
+import xlsxwriter
 from PIL import Image, ImageTk
 from tensorflow.keras.models import load_model
 from tensorflow.keras.preprocessing.image import img_to_array
 from tkcalendar import DateEntry
 
+
+def resource_path(relative_path):
+    """ Obtenha o caminho absoluto para o recurso, funciona para dev e para PyInstaller """
+    base_path = getattr(sys, '_MEIPASS', os.path.dirname(os.path.abspath("__file__")))
+    return os.path.join(base_path, relative_path)
+
+
 root = tk.Tk()
 root.title("Detector facial")
-root.iconbitmap(default='icon/faceicon.ico')
+root.iconbitmap(default=resource_path('icon/faceicon.ico'))
 
 
 class Application(tk.Frame):
@@ -58,8 +68,8 @@ class Application(tk.Frame):
         self.cor_azul_rgb = (255, 50, 50)
         self.cor_verde_rgb = (0, 255, 23)
         self.cor_vermelho_rgb = (255, 0, 0)
-        self.model = load_model('processing/model_01_human_category.h5')
-        self.face_cascade = cv2.CascadeClassifier('material/haarcascade_frontalface_default.xml')
+        self.model = load_model(resource_path('processing/model_01_human_category.h5'))
+        self.face_cascade = cv2.CascadeClassifier(resource_path('material/haarcascade_frontalface_default.xml'))
         # Banco de dados
         self.connection = sqlite3.connect('Main_DB.db')
         self.cursor_db = self.connection.cursor()
@@ -252,7 +262,7 @@ class Application(tk.Frame):
     def sobre(self):
         window = tk.Tk()
         window.title("Sobre")
-        window.iconbitmap(default='icon/faceicon.ico')
+        window.iconbitmap(default=resource_path('icon/faceicon.ico'))
         descricao = "Essa aplicação utiliza I.A para detecção facial e mapeamento por gênero e idade de cada rosto \n" \
                     "detectado, o mesmo utiliza de biometria facial para não repetir a contagem dos rostos. Este \n" \
                     "software não salva dados de biometria facial, o mesmo só é utilizado em tempo de execução e \n" \
@@ -346,7 +356,7 @@ class Application(tk.Frame):
 
         top_level = tk.Tk()
         top_level.title("Exportar")
-        top_level.iconbitmap(default='icon/faceicon.ico')
+        top_level.iconbitmap(default=resource_path('icon/faceicon.ico'))
         Label(top_level, text='Data inicial').grid(row=0, column=0, padx=10, pady=10)
         Label(top_level, text='Data final').grid(row=0, column=2, padx=10, pady=10)
         calendario_inicio = DateEntry(top_level, width=12, background='darkblue', foreground='white', borderwidth=2,
