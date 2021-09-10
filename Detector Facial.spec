@@ -18,7 +18,7 @@ a = Analysis(['main.py'],
                 ('processing/model_01_human_category.h5','processing'),
                 ('icon/faceicon.ico','icon')
              ],
-             hiddenimports=[],
+             hiddenimports=["babel.numbers"],
              hookspath=[],
              hooksconfig={},
              runtime_hooks=[],
