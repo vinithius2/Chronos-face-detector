@@ -1,4 +1,4 @@
-# Detector Facial UI
+# Chronos (Detector Facial)
 
 Este projeto é baseado nos estudos e modelo criado no projeto de conclusão de curso sobre **CONTROLE DE FLUXO DE PESSOAS NAS UNIDADES DE PRONTO
 ATENDIMENTO 24 HORAS COM VISÃO COMPUTACIONAL**, código fonte: https://github.com/vinithius2/tcc-redes-convolucionais .
