@@ -1,6 +1,5 @@
 # -*- mode: python ; coding: utf-8 -*-
 
-
 block_cipher = None
 
 face_models = [
@@ -11,12 +10,13 @@ face_models = [
 ]
 
 a = Analysis(['main.py'],
-             pathex=['C:/Users/marcos.filho/PycharmProjects/FaceDetectionUI'],
+             pathex=['C:/Users/marcos.filho/PycharmProjects/Chronos'],
              binaries=face_models,
              datas=[
                 ('material/haarcascade_frontalface_default.xml','material'),
                 ('processing/model_01_human_category.h5','processing'),
-                ('icon/faceicon.ico','icon')
+                ('icon/faceicon.ico','icon'),
+                ('images/sem_sinal.png','images')
              ],
              hiddenimports=["babel.numbers"],
              hookspath=[],
@@ -41,7 +41,7 @@ exe = EXE(pyz,
           a.zipfiles,
           a.datas,
           [],
-          name='Detector Facial',
+          name='Chronos',
           debug=False,
           bootloader_ignore_signals=False,
           strip=False,
